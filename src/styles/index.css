@@ -11,7 +11,7 @@
 
 */
 .container {
-    background: aqua;
+    background-color:mediumturquoise;
     width: 400px;
     height: 500px;
     margin-top: 60px;
@@ -26,10 +26,3 @@ h1 {
 .vacio {
     display: none;
 }
-
-/* .list {
-    background-color: aliceblue;
-    width: 250px;
-    height: 350px;
-    border-radius: 15px;
-} */

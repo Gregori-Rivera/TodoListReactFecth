@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ListGroup, Placeholder } from "react-bootstrap";
+import { ListGroupItem } from 'react-bootstrap';
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -27,14 +28,18 @@ const Home = () => {
 				<input type="text" placeholder='New task' value={inputValue} onChange={(event)=>setInputValue(event.target.value)} />
 				<button onClick={handleAdd}>Add</button>
 			</div>
-			<h1 className= {tasks.length == 0 ? "": "vacio"}>No hay tarea</h1>
+			<h1 className= {tasks.length == 0 ? "": "vacio"}>No Homework</h1>
 			<ListGroup>
 				{
 					tasks.map((task,index) => {
 						return (
-							<ListGroup.Item key={index} >
-									{task}
-									<button onClick={()=>handleDelete (index)}> x </button>
+							<ListGroup.Item  key={index}>
+								<div className="justify-content-between">
+									<div className="taskbar">{task}</div>
+									<div>
+										<button className="botondelete" onClick={()=>handleDelete (index)}> Delete </button>
+									</div>
+								</div>
 							</ListGroup.Item>
 						)
 					})
