@@ -34,8 +34,8 @@ const Home = () => {
 					tasks.map((task,index) => {
 						return (
 							<ListGroup.Item  key={index}>
-								<div className="justify-content-between">
-									<div className="taskbar">{task}</div>
+								<div className=" taskbar d-flex justify-content-between">
+									<div>{task}</div>
 									<div>
 										<button className="botondelete" onClick={()=>handleDelete (index)}> Delete </button>
 									</div>

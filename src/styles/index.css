@@ -26,3 +26,11 @@ h1 {
 .vacio {
     display: none;
 }
+
+.botondelete {
+    display: none;
+}
+
+.taskbar:hover .botondelete{
+    display: inline;
+}
