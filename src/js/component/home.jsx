@@ -28,6 +28,24 @@ const Home = () => {
 	},[]);
 
 
+	// useEffect(() => {
+	
+	// 	const postToDo = async () =>{
+	// 		let response = await fetch(`${URL_API}/grivera`,{
+	// 			headers:{
+	// 				"Content-Type":"application/json"
+	// 			},
+	// 			method:"POST",
+	// 			body: JSON.stringify( []) 
+	// 		})
+	// 		let data = await response.json()
+	// 		console.log(data)
+	// 		}
+	// 		postToDo()
+
+	// },[]);
+
+
 	const putToDo = async (newTasks) =>{
 		console.log(newTasks)
 		let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/grivera",{
