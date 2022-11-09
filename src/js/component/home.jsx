@@ -10,8 +10,43 @@ const Home = () => {
 	const [inputValue, setInputValue] = useState("")
 	const [tasks, setTask] = useState([])
 	
+	const getToDo = async () =>{
+		let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/grivera",{
+			headers:{
+				"Content-Type":"application/json"
+			},
+			method:"GET",
+		})
+		let data = await response.json()
+		setTask(data)
+	}
+
+	useEffect(() => {
+	
+		getToDo()
+
+	},[]);
+
+
+	const putToDo = async (newTasks) =>{
+		console.log(newTasks)
+		let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/grivera",{
+			headers:{
+				"Content-Type":"application/json"
+			},
+			method:"PUT",
+			body: JSON.stringify(newTasks) 
+		})
+		let data = await response.json()
+		if (response.ok){
+			console.log(data)
+			getToDo()
+		}
+	}
+
 	function handleAdd () {
-		setTask ([inputValue,...tasks])
+		let newTask = [{label:inputValue,done:false},...tasks] 
+		putToDo(newTask)
 		setInputValue ("")
 	}
 
@@ -19,6 +54,21 @@ const Home = () => {
 		let deleteTask = [...tasks]
 		deleteTask.splice (index,1)
 		setTask (deleteTask)
+		deletelist(deleteTask)
+	}
+
+	const deletelist= async (deleteTask)=>{
+		let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/grivera",{
+			headers:{
+				"Content-Type":"application/json"
+			},
+			method:"PUT",
+			body: JSON.stringify(deleteTask)
+		})
+		let data = await response.json()
+		if (response.status == 200){
+			console.log("Eliminado")
+		}
 	}
 
 	return (
@@ -35,7 +85,7 @@ const Home = () => {
 						return (
 							<ListGroup.Item  key={index}>
 								<div className=" taskbar d-flex justify-content-between">
-									<div>{task}</div>
+									<div>{task.label}</div>
 									<div>
 										<button className="botondelete" onClick={()=>handleDelete (index)}> Delete </button>
 									</div>
